@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .invalid {
+            border-color: red;
+        }
+        .valid {
+            border-color: green;
+        }
+        #loadingSpinner {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card" style="width: 30rem;">
+            <div class="card-body">
+                <h3 class="card-title text-center">Admin Login</h3>
+                <% if (typeof error !== 'undefined') { %>
+                    <div class="alert alert-danger"><%= error %></div>
+                <% } %>
+                <form method="post" action="/admin/login" id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <div id="loadingSpinner" class="text-center mt-3">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <a href="/" class="btn btn-secondary btn-block mt-3">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+
+            if (!username.value.trim() || !password.value.trim()) {
+                if (!username.value.trim()) {
+                    username.classList.add('invalid');
+                } else {
+                    username.classList.remove('invalid');
+                    username.classList.add('valid');
+                }
+
+                if (!password.value.trim()) {
+                    password.classList.add('invalid');
+                } else {
+                    password.classList.remove('invalid');
+                    password.classList.add('valid');
+                }
+
+                event.preventDefault();
+            } else {
+                event.preventDefault(); // Prevent immediate submission
+                document.querySelector('button[type="submit"]').disabled = true;
+                document.getElementById('loadingSpinner').style.display = 'block';
+
+                // Simulate a delay
+                setTimeout(() => {
+                    event.target.submit(); // Submit the form after delay
+                }, 3000); // 3 seconds delay
+            }
+        });
+
+        document.getElementById('username').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+            } else {
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+            } else {
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            }
+        });
+    </script>
+</body>
+</html>
