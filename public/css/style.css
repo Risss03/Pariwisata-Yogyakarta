@@ -1,24 +1,265 @@
 body {
     font-family: Arial, sans-serif;
-}
-
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 1em;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
+    margin: 0;
     padding: 0;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 1em;
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.app-bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    padding: 8px 16px;
+    background-color: rgba(1, 1, 1, 0.8);
+    border-bottom: 1px solid #5b5353;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .app-bar .app-bar__menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .app-bar .app-bar__menu button {
+    background-color: black;
+    border: none;
+    font-size: 18px;
+    padding: 8px;
+    cursor: pointer;
+    color: whitesmoke;
+    /* display: none; */
+  }
+
+  
+  
+  .app-bar .app-bar__brand {
+    display: flex;
+    align-items: center;
+   }
+  
+  .app-bar .app-bar__brand h1 {
+    color: cornsilk;
+    text-transform: camelcase;
+    font-size: 35px;
+    user-select: none;
+  }
+  
+  .app-bar .app-bar__brand span {
+    color: rgb(101, 82, 82);
+  }
+  
+
+.app-bar_menu {
+    display: none;
+}
+
+.app-bar__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  /* .app-bar__navigation.open {
+    left: 0;
+  } */
+
+.app-bar__navigation ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .app-bar__navigation ul li {
+    margin: 0 10px;
+    margin-top: 0;
+  }
+  
+  .app-bar__navigation ul li a {
+    color: whitesmoke;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 8px;
+  
+  }
+
 main {
-    padding: 1em;
+    padding: 20px;
+}
+
+footer a {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  footer {
+    background-color: #333;
+    padding: 1rem 0 3rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  footer .sosial {
+    padding: 1rem 0;
+  }
+  
+  footer .sosial a {
+    color: #FBF3D5;
+    margin: 1rem;
+    padding: 8px;
+    font-size: 24px;
+  }
+  
+footer .links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    margin-bottom: 1.4rem;
+}
+
+footer .links a {
+    color: #FBF3D5;
+    text-decoration: none;
+    padding: 0.7rem 1rem;
+}
+
+footer .credit {
+    padding: 0.8rem;
+    font-size: 14px;
+}
+
+footer .credit a {
+    color: #5b5353;
+    font-weight: 70;
+}
+
+footer .credit p {
+    font-size: 10px;
+    color: aliceblue;
+}
+
+footer li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .app-bar .app-bar__menu button {
+        background-color: black;
+        border: none;
+        font-size: 18px;
+        padding: 8px;
+        cursor: pointer;
+        color: whitesmoke;
+        display: block;
+      }
+    
+      .app-bar__navigation {
+        display: block;
+        list-style: none;
+        width: auto;
+        position: absolute;
+        top: 60px;
+        left: -150%;
+        background-color: #6e6a6a;
+        transition: all 0.3s ease;
+      }
+    
+      .app-bar__navigation.open ul {
+        left: 0;
+        display: block;
+        width: 50%;
+      }
+    
+    .app-bar__navigation ul li a {
+      color: whitesmoke;
+      font-size: 20px;
+      text-decoration: none;
+      padding: 8px;
+      display: block;
+    }
+
+    nav ul.show {
+        display: flex;
+    } 
+    
+
+    footer .links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-bar .app-bar__menu button {
+        background-color: black;
+        border: none;
+        font-size: 18px;
+        padding: 8px;
+        cursor: pointer;
+        color: whitesmoke;
+        display: block;
+      }
+    
+      .app-bar__navigation {
+        display: block;
+        list-style: none;
+        width: auto;
+        position: absolute;
+        top: 60px;
+        left: -150%;
+        background-color: #595454;
+        transition: all 0.3s ease;
+      }
+    
+      .app-bar__navigation.open ul {
+        left: 0;
+        display: block;
+      }
+    
+    .app-bar__navigation ul li a {
+      color: whitesmoke;
+      font-size: 20px;
+      text-decoration: none;
+      padding: 8px;
+      display: block;
+    }
+  
+      .app-bar .app-bar__brand h1 {
+        font-size: 1.5em;
+      }
+    
+      .app-bar__menu button {
+        font-size: 16px;
+        padding: 6px;
+      }
+    footer .social a {
+        font-size: 20px;
+    }
+
+    footer .links a {
+        padding: 5px;
+    }
+
+    footer .credit {
+        font-size: 12px;
+    }
 }

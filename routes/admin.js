@@ -36,11 +36,63 @@ router.get('/dashboard', (req, res) => {
         return res.redirect('/admin/login');
     }
     res.send(`
-        <h1>Admin Dashboard</h1>
-        <a href="/admin/pariwisata/new">Add New Pariwisata</a>
-        <form method="post" action="/admin/logout" style="margin-top: 20px;">
-            <button type="submit">Logout</button>
-        </form>
+        <div class="dashboard">
+            <h1>Admin Dashboard</h1>
+            <a href="/admin/pariwisata/new">Add New Pariwisata</a>
+            <form method="post" action="/admin/logout" style="margin-top: 20px;">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .dashboard {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .dashboard h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .dashboard a {
+            text-decoration: none;
+            border: 1px solid black;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 2px;
+        }
+        .dashboard a.btn, .dashboard .btn-logout {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .dashboard .btn-logout {
+            background-color: #dc3545;
+        }
+        .dashboard a.btn:hover, .dashboard .btn-logout:hover {
+            background-color: #0056b3;
+        }
+        .dashboard .btn-logout:hover {
+            background-color: #c82333;
+        }
+        </style>
     `);
 });
 
