@@ -14,10 +14,14 @@
             <button id="hamburgerButton">☰</button>
         </div>
         <div class="app-bar_brand">
-            <h1>Pariwisata Yogyakarta</h1>
+            <h1>Pari<span>wisata</span> Yogyakarta</h1>
         </div>
         <nav id="navigationDrawer" class="app-bar__navigation">
-           
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Admin Login</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -47,14 +51,18 @@
       
       <script>
         feather.replace();
-
-        document.getElementById('hamburgerButton').addEventListener('click', function () {
-            var nav = document.querySelector('nav ul');
-            nav.classList.toggle('show');
-        });
       </script>
 
-    
+      <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        const hamburgerButton = document.getElementById('hamburgerButton');
+        const navigationDrawer = document.getElementById('navigationDrawer');
+
+        hamburgerButton.addEventListener('click', () => {
+        navigationDrawer.classList.toggle('active');
+    });
+});
+      </script>
 
     <script src="/js/script.js"></script>
 </body>

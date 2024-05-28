@@ -31,37 +31,37 @@ nav {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   }
   
-  .app-bar .app-bar__menu {
+  .app-bar .app-bar_menu {
     display: flex;
     align-items: center;
   }
   
-  .app-bar .app-bar__menu button {
+  .app-bar .app-bar_menu button {
     background-color: black;
     border: none;
     font-size: 18px;
     padding: 8px;
     cursor: pointer;
     color: whitesmoke;
-    /* display: none; */
+    display: none;
   }
 
   
   
-  .app-bar .app-bar__brand {
+  .app-bar .app-bar_brand {
     display: flex;
     align-items: center;
    }
   
-  .app-bar .app-bar__brand h1 {
-    color: cornsilk;
+  .app-bar .app-bar_brand h1 {
+    color: whitesmoke;
     text-transform: camelcase;
     font-size: 35px;
     user-select: none;
   }
   
-  .app-bar .app-bar__brand span {
-    color: rgb(101, 82, 82);
+  .app-bar .app-bar_brand span {
+    color: darkred;
   }
   
 
@@ -70,7 +70,7 @@ nav {
 }
 
 .app-bar__navigation {
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
@@ -162,10 +162,10 @@ footer li {
 }
 
 @media (max-width: 768px) {
-    .app-bar .app-bar__menu button {
-        background-color: black;
+    .app-bar .app-bar_menu button {
+        background-color: transparent;
         border: none;
-        font-size: 18px;
+        font-size: 26px;
         padding: 8px;
         cursor: pointer;
         color: whitesmoke;
@@ -173,18 +173,17 @@ footer li {
       }
     
       .app-bar__navigation {
-        display: block;
+        display: none;
         list-style: none;
         width: auto;
         position: absolute;
         top: 60px;
-        left: -150%;
+        left: -150px;
         background-color: #6e6a6a;
         transition: all 0.3s ease;
       }
     
       .app-bar__navigation.open ul {
-        left: 0;
         display: block;
         width: 50%;
       }
@@ -197,9 +196,9 @@ footer li {
       display: block;
     }
 
-    nav ul.show {
-        display: flex;
-    } 
+    .app-bar_menu {
+        display: block;
+    }
     
 
     footer .links {
@@ -209,10 +208,10 @@ footer li {
 }
 
 @media (max-width: 480px) {
-    .app-bar .app-bar__menu button {
-        background-color: black;
+    .app-bar .app-bar_menu button {
+        background-color: transparent;
         border: none;
-        font-size: 18px;
+        font-size: 24px;
         padding: 8px;
         cursor: pointer;
         color: whitesmoke;
@@ -243,11 +242,11 @@ footer li {
       display: block;
     }
   
-      .app-bar .app-bar__brand h1 {
+      .app-bar .app-bar_brand h1 {
         font-size: 1.5em;
       }
     
-      .app-bar__menu button {
+      .app-bar_menu button {
         font-size: 16px;
         padding: 6px;
       }
