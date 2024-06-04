@@ -4,14 +4,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pariwisata</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pariwisata-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pariwisata-info img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .reviews {
+            margin-top: 20px;
+        }
+
+        .reviews h3 {
+            margin-bottom: 10px;
+        }
+
+        .reviews ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reviews li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .add-review {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .add-review h3 {
+            margin-bottom: 10px;
+        }
+
+        .add-review form {
+            margin-top: 10px;
+        }
+
+        .add-review form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .add-review form input[type="text"],
+        .add-review form textarea,
+        .add-review form input[type="number"],
+        .add-review form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .add-review form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-review form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <h1>Detail Pariwisata</h1>
-    <div>
-        <h2><%= pariwisata.judul %></h2>
-        <img src="/uploads/<%= pariwisata.gambar %>" alt="<%= pariwisata.judul %>" style="max-width: 300px;">
-        <p><%= pariwisata.deskripsiGambar %></p>
-        <p><%= pariwisata.deskripsi %></p>
+    <div class="container">
+        <div class="pariwisata-info">
+            <h2><%= pariwisata.judul %></h2>
+            <img src="/uploads/<%= pariwisata.gambar %>" alt="<%= pariwisata.judul %>">
+            <p><%= pariwisata.deskripsi %></p>
+        </div>
+
+        <div class="reviews">
+            <h3>Ulasan</h3>
+            <% if (reviews.length > 0) { %>
+                <ul>
+                    <% reviews.forEach(review => { %>
+                        <li><strong><%= review.user %>:</strong> <%= review.komentar %> (Rating: <%= review.rating %>)</li>
+                    <% }); %>
+                </ul>
+            <% } else { %>
+                <p>Belum ada ulasan untuk pariwisata ini.</p>
+            <% } %>
+        </div>
+
+        <div class="add-review">
+            <h3>Tambah Ulasan</h3>
+            <form method="post" action="/api/pariwisata/<%= pariwisata.id %>/review">
+                <div>
+                    <label for="user">Nama:</label>
+                    <input type="text" id="user" name="user" required>
+                </div>
+                <div>
+                    <label for="komentar">Komentar:</label>
+                    <textarea id="komentar" name="komentar" rows="3" required></textarea>
+                </div>
+                <div>
+                    <label for="rating">Rating:</label>
+                    <input type="number" id="rating" name="rating" min="1" max="5" required>
+                </div>
+                <button type="submit">Kirim Ulasan</button>
+                <button onclick="window.history.back()" style="margin-top: 20px;">Kembali</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

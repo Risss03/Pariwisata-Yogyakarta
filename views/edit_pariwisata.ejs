@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Pariwisata</title>
+    <title>Edit Pariwisata</title>
     <style>
         body {
             display: flex;
@@ -12,7 +12,6 @@
             min-height: 100vh;
             margin: 0;
             background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
         }
 
         .form-container {
@@ -54,7 +53,7 @@
         .btn-primary, .btn-secondary {
             display: inline-block;
             padding: 10px 20px;
-            color: #fff;
+            color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -123,27 +122,29 @@
 </head>
 <body>
     <div class="form-container">
-        <h1>Tambah Pariwisata</h1>
-        <form method="post" action="/admin/pariwisata" enctype="multipart/form-data">
+        <h1>Edit Pariwisata</h1>
+        <form action="/admin/pariwisata/<%= pariwisata.id %>/update" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" required>
+                <input type="text" id="judul" name="judul" class="form-control" value="<%= pariwisata.judul %>" required>
             </div>
             <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="gambar">Gambar</label>
-                <input type="file" class="form-control-file" id="gambar" name="gambar" placeholder="Gambar" required>
+                <textarea id="deskripsi" name="deskripsi" class="form-control" required><%= pariwisata.deskripsi %></textarea>
             </div>
             <div class="form-group">
                 <label for="deskripsiGambar">Deskripsi Gambar</label>
-                <textarea class="form-control" id="deskripsiGambar" name="deskripsiGambar" rows="3" placeholder="Deskripsi Gambar" required></textarea>
+                <textarea id="deskripsiGambar" name="deskripsiGambar" class="form-control" required><%= pariwisata.deskripsi_gambar %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="gambar">Gambar</label>
+                <input type="file" id="gambar" name="gambar" class="form-control-file">
+                <input type="hidden" name="existingGambar" value="<%= pariwisata.gambar %>">
+                <img src="/uploads/<%= pariwisata.gambar %>" alt="<%= pariwisata.judul %>" style="max-width: 100px; margin-top: 10px;">
             </div>
             <div class="button-group">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='/admin/dashboard'">Kembali</button>
-                <button type="submit" class="btn btn-primary">Tambah Pariwisata</button>
+                <button type="submit" class="btn-primary">Update</button>
+                <a href="/admin/dashboard" class="btn-secondary">Cancel</a>
             </div>
         </form>
     </div>

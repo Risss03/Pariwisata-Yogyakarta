@@ -4,14 +4,35 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             const pariwisataList = document.getElementById('pariwisata-list');
             data.forEach(pariwisata => {
-                const div = document.createElement('div');
-                div.innerHTML = `
-                    <h2>${pariwisata.judul}</h2>
-                    <img src="/uploads/${pariwisata.gambar}" alt="${pariwisata.judul}" style="max-width: 300px;">
-                    <p>${pariwisata.deskripsi}</p>
-                    <a href="/pariwisata/${pariwisata.id}">Read more</a>
-                `;
-                pariwisataList.appendChild(div);
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                const image = document.createElement('img');
+                image.src = `/uploads/${pariwisata.gambar}`;
+                image.alt = pariwisata.judul;
+                image.style.maxWidth = '100%'; // Sesuaikan lebar gambar
+
+                const cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+
+                const title = document.createElement('h2');
+                title.textContent = pariwisata.judul;
+
+                const description = document.createElement('p');
+                description.textContent = pariwisata.deskripsi;
+
+                const readMoreLink = document.createElement('a');
+                readMoreLink.href = `/pariwisata/${pariwisata.id}`;
+                readMoreLink.textContent = 'Read more';
+
+                cardBody.appendChild(title);
+                cardBody.appendChild(description);
+                cardBody.appendChild(readMoreLink);
+
+                card.appendChild(image);
+                card.appendChild(cardBody);
+
+                pariwisataList.appendChild(card);
             });
         });
 });
