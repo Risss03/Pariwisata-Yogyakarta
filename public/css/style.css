@@ -1,0 +1,346 @@
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #E3FEF7;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #003C43;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#introduction img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 60%;
+  width:75%;
+  padding: 10px;
+}
+
+#introduction p {
+  /* text-align: center; */
+  font-size: 30px;
+  color: #77B0AA;
+  margin-top: 2px;
+  padding-top: 2px;
+  text-shadow: #5b5353;
+  margin-left: 50px;
+}
+
+.app-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  padding: 8px 16px;
+  background-color: #003C43;
+  border-bottom: 1px solid #5b5353;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.app-bar .app-bar_menu {
+  display: flex;
+  align-items: center;
+}
+
+.app-bar .app-bar_menu button {
+  background-color: #003C43;
+  border: none;
+  font-size: 18px;
+  padding: 8px;
+  cursor: pointer;
+  color: whitesmoke;
+  display: none;
+}
+
+
+
+.app-bar .app-bar_brand {
+  display: flex;
+  align-items: center;
+ }
+
+.app-bar .app-bar_brand h1 {
+  color: whitesmoke;
+  text-transform: capitalize;
+  font-size: 35px;
+  user-select: none;
+}
+
+.app-bar .app-bar_brand span {
+  color: #77B0AA;
+}
+
+
+.app-bar_menu {
+  display: none;
+}
+
+.app-bar__navigation {
+  display: block;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 24px;
+}
+
+/* .app-bar__navigation.open {
+  left: 0;
+} */
+
+.app-bar__navigation ul {
+  display: flex;
+  list-style: none;
+}
+
+.app-bar__navigation ul li {
+  margin: 0 10px;
+  margin-top: 0;
+}
+
+.app-bar__navigation ul li a {
+  color: whitesmoke;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 8px;
+
+}
+
+#pariwisata-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 5px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.card {
+display: grid;
+margin: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #77B0AA;
+  height: 150vh;
+}
+
+.card .card-body a {
+  background-color: aliceblue;
+  color: rgb(32, 228, 49);
+  margin-bottom: 10px;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0; /* Membuat sudut atas gambar menjadi bundar */
+}
+
+.card-body {
+  padding: 10px;
+  color: white;
+}
+
+.card-body a {
+  text-align: center;
+  color: blue;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #003C43;
+}
+
+.card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  text-align: justify;
+  padding: 15px;
+}
+
+.card a {
+  display: block;
+  padding: 10px;
+  background-color: #135D66;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 8px;
+  width: 30%;
+  margin: auto;
+  font-size: 15px;
+}
+
+.card a:hover {
+  background-color: #05626d;
+  color: white;
+  font-weight: bold;
+}
+
+
+footer a {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+footer {
+  background-color: #003C43;
+  padding: 5px;
+  margin-top: 3rem;
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+
+footer .sosial {
+  padding: 10px 0;
+}
+
+footer .social a {
+  color: white;
+  margin: 10px;
+  padding: 8px;
+  font-size: 24px;
+}
+
+footer .links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+footer .links a {
+  color: white;
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+}
+
+footer .credit {
+  font-size: 14px;
+}
+
+footer .credit a {
+  color: white;
+  font-weight: 70;
+}
+
+footer .credit p {
+  font-size: 10px;
+  color: white;
+}
+
+footer li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .app-bar .app-bar_menu button {
+      background-color: transparent;
+      border: none;
+      font-size: 26px;
+      padding: 8px;
+      cursor: pointer;
+      color: whitesmoke;
+      display: block;
+    }
+  
+    .app-bar__navigation {
+      display: none;
+      list-style: none;
+      width: auto;
+      position: absolute;
+      top: 60px;
+      left: -150px;
+      background-color: #003C43;
+      transition: all 0.3s ease;
+    }
+  
+    .app-bar__navigation.open ul {
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+  
+  .app-bar__navigation ul li a {
+    color: whitesmoke;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 8px;
+    display: block;
+  }
+
+  .app-bar_menu {
+      display: block;
+  }
+  
+
+  footer .links {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .app-bar .app-bar_menu button {
+    font-size: 24px;
+    padding: 8px;
+}
+
+.card-body a {
+  color: red;
+  background-color: blue;
+  text-align: center;
+}
+
+footer .social a {
+    font-size: 20px;
+}
+
+footer .links a {
+    padding: 5px;
+}
+
+footer .credit {
+    font-size: 12px;
+}
+}

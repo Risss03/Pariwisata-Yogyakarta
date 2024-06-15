@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #E3FEF7;
+            font-family: 'Poppins', sans-serif;
+        }
+        .invalid {
+            border-color: red;
+        }
+        .valid {
+            border-color: green;
+        }
+        #loadingSpinner {
+            display: none;
+        }
+        .card {
+            background-color: #77B0AA;
+            color: white;
+            min-height: 50vh; /* Set minimum height to 50% of viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card-title{
+            color: #003C43;
+        }
+        .btn {
+            display: inline-flex;
+            width: fit-content;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 10px; 
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px; 
+            max-width: 30%;
+            height: auto; 
+            margin-top: 20px; 
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card" style="width: 35rem;">
+            <div class="card-body">
+                <img src="/images/logo-jogja.png" alt="LogoJogja" class="logo">
+                <h3 class="card-title text-center">Admin Login</h3>
+                <% if (typeof error !== 'undefined') { %>
+                    <div class="alert alert-danger" style="text-align: center;"><%= error %></div>
+                <% } %>
+                <form method="post" action="/admin/login" id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="button-group">
+                        <a href="/" class="btn btn-secondary">Back to Home</a>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+                <div id="loadingSpinner" class="text-center mt-3">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+
+            if (!username.value.trim() || !password.value.trim()) {
+                if (!username.value.trim()) {
+                    username.classList.add('invalid');
+                } else {
+                    username.classList.remove('invalid');
+                    username.classList.add('valid');
+                }
+
+                if (!password.value.trim()) {
+                    password.classList.add('invalid');
+                } else {
+                    password.classList.remove('invalid');
+                    password.classList.add('valid');
+                }
+
+                event.preventDefault();
+            } else {
+                event.preventDefault();
+                document.querySelector('button[type="submit"]').disabled = true;
+                document.getElementById('loadingSpinner').style.display = 'block';
+
+                setTimeout(() => {
+                    event.target.submit(); 
+                }, 3000); 
+            }
+        });
+
+        document.getElementById('username').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+            } else {
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('invalid');
+                this.classList.add('valid');
+            } else {
+                this.classList.remove('valid');
+                this.classList.add('invalid');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Pariwisata</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E3FEF7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pariwisata-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pariwisata-info h2 {
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .pariwisata-info img {
+            max-width: 50%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .pariwisata-info p {
+            text-align: justify;
+            font-size: 15px;
+        }
+
+        .reviews {
+            flex: 1;
+            margin-top: 20px;
+        }
+
+        .reviews h3 {
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .reviews ul {
+            list-style: none;
+            padding: 8px;
+            margin: 8px;
+            border: 2px solid rgb(11, 9, 9);
+            border-radius: 3px;
+        }
+
+        .reviews li {
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .add-review {
+            flex: 1;
+            margin-top: 20px;
+            border-top: 1px solid #f3f8f5;
+            padding-top: 20px;
+        }
+
+        .add-review h3 {
+            margin-bottom: 10px;
+        }
+
+        .add-review form {
+            margin-top: 10px;
+            border: 2px solid black;
+            padding: 10px;
+            border-radius: 2px;
+        }
+
+        .add-review form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .add-review form input[type="text"],
+        .add-review form textarea,
+        .add-review form input[type="number"],
+        .add-review form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .add-review form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-review form button:hover {
+            background-color: #547ca7;
+        }
+
+        .reviews-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detail Pariwisata</h1>
+    <div class="container">
+        <div class="pariwisata-info">
+            <h2><%= pariwisata.judul %></h2>
+            <img src="/uploads/<%= pariwisata.gambar %>" alt="<%= pariwisata.judul %>">
+            <p><%= pariwisata.deskripsi %></p>
+        </div>
+
+        <div class="reviews-container">
+            <div class="reviews">
+                <h3>Ulasan</h3>
+                <% if (reviews.length > 0) { %>
+                    <ul>
+                        <% reviews.forEach(review => { %>
+                            <li><strong><%= review.user %>:</strong> <%= review.komentar %> (Rating: <%= review.rating %>)</li>
+                        <% }); %>
+                    </ul>
+                <% } else { %>
+                    <p>Belum ada ulasan untuk pariwisata ini.</p>
+                <% } %>
+            </div>
+
+            <div class="add-review">
+                <h3>Tambah Ulasan</h3>
+                <form method="post" action="/api/pariwisata/<%= pariwisata.id %>/review">
+                    <div>
+                        <label for="user">Nama:</label>
+                        <input type="text" id="user" name="user" required>
+                    </div>
+                    <div>
+                        <label for="komentar">Komentar:</label>
+                        <textarea id="komentar" name="komentar" rows="3" required></textarea>
+                    </div>
+                    <div>
+                        <label for="rating">Rating:</label>
+                        <input type="number" id="rating" name="rating" min="1" max="5" required>
+                    </div>
+                    <button type="submit">Kirim Ulasan</button>
+                    <button type="button" onclick="window.history.back()" style="margin-top: 20px;">Kembali</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
