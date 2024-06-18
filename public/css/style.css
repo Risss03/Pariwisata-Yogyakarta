@@ -33,21 +33,10 @@ nav {
 
 #introduction img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 60%;
-  width:75%;
-  padding: 10px;
-}
-
-#introduction p {
-  /* text-align: center; */
-  font-size: 30px;
-  color: #77B0AA;
-  margin-top: 2px;
-  padding-top: 2px;
-  text-shadow: #5b5353;
-  margin-left: 50px;
+  max-height: 900px;
+  border-radius: 4px;
+  width:100%;
+  top: 0;
 }
 
 .app-bar {
@@ -75,6 +64,7 @@ nav {
   padding: 8px;
   cursor: pointer;
   color: whitesmoke;
+  right: 1rem;
   display: none;
 }
 
@@ -85,14 +75,15 @@ nav {
   align-items: center;
  }
 
-.app-bar .app-bar_brand h1 {
-  color: whitesmoke;
+ h1 {
+  color: #003C43;
+  margin: 30px;
   text-transform: capitalize;
   font-size: 35px;
   user-select: none;
 }
 
-.app-bar .app-bar_brand span {
+h1 span {
   color: #77B0AA;
 }
 
@@ -109,9 +100,7 @@ nav {
   font-size: 24px;
 }
 
-/* .app-bar__navigation.open {
-  left: 0;
-} */
+
 
 .app-bar__navigation ul {
   display: flex;
@@ -125,7 +114,7 @@ nav {
 
 .app-bar__navigation ul li a {
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 12px;
   text-decoration: none;
   padding: 8px;
 
@@ -135,6 +124,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   gap: 5px;
+  margin: 30px;
 }
 
 .card-container {
@@ -146,31 +136,45 @@ nav {
 }
 
 .card {
-display: grid;
-margin: 10px;
+  margin: 10px;
+  padding: 10px;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #77B0AA;
-  height: 150vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card .card-body a {
-  background-color: aliceblue;
-  color: rgb(32, 228, 49);
-  margin-bottom: 10px;
+  background-color: #003C43;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  margin-top: 10px;
+  width: fit-content;
+  font-size: 12px;
+}
+
+.card .card-body a:hover {
+  background-color: #01474e;
+  color: white;
 }
 
 .card img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  border-radius: 8px 8px 0 0; /* Membuat sudut atas gambar menjadi bundar */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
 .card-body {
   padding: 10px;
-  color: white;
+  margin: 0;
+  flex-grow: 1;
 }
 
 .card-body a {
@@ -178,18 +182,20 @@ margin: 10px;
   color: blue;
 }
 
+
 .card h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin: 10px 0;
+  padding: 0;
   color: #003C43;
 }
 
 .card p {
-  font-size: 16px;
-  margin-bottom: 10px;
-  word-wrap: break-word;
+  padding: 0;
+  margin: 10px 0;
   text-align: justify;
-  padding: 15px;
+  font-size: 12px;
+  color: white;
 }
 
 .card a {
@@ -208,7 +214,6 @@ margin: 10px;
 .card a:hover {
   background-color: #05626d;
   color: white;
-  font-weight: bold;
 }
 
 
@@ -216,13 +221,13 @@ footer a {
   display: inline-block;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: 10px;
 }
 
 footer {
   background-color: #003C43;
   padding: 5px;
-  margin-top: 3rem;
+  margin-top: 1rem;
   text-align: center;
   width: auto;
   height: auto;
@@ -234,9 +239,8 @@ footer .sosial {
 
 footer .social a {
   color: white;
-  margin: 10px;
   padding: 8px;
-  font-size: 24px;
+  font-size: 14px;
 }
 
 footer .links {
@@ -244,13 +248,11 @@ footer .links {
   justify-content: center;
   gap: 20px;
   padding: 10px;
-  margin-bottom: 10px;
 }
 
 footer .links a {
   color: white;
   text-decoration: none;
-  padding: 0.7rem 1rem;
 }
 
 footer .credit {
@@ -259,7 +261,7 @@ footer .credit {
 
 footer .credit a {
   color: white;
-  font-weight: 70;
+  font-weight: 50;
 }
 
 footer .credit p {
@@ -272,58 +274,47 @@ footer li {
   display: inline-block;
 }
 
+
 @media (max-width: 768px) {
-  .app-bar .app-bar_menu button {
-      background-color: transparent;
-      border: none;
-      font-size: 26px;
-      padding: 8px;
-      cursor: pointer;
-      color: whitesmoke;
-      display: block;
-    }
-  
-    .app-bar__navigation {
-      display: none;
-      list-style: none;
-      width: auto;
-      position: absolute;
-      top: 60px;
-      left: -150px;
-      background-color: #003C43;
-      transition: all 0.3s ease;
-    }
-  
-    .app-bar__navigation.open ul {
-      display: block;
-      width: 100%;
-      padding: 0;
-    }
-  
-  .app-bar__navigation ul li a {
-    color: whitesmoke;
-    font-size: 20px;
-    text-decoration: none;
-    padding: 8px;
-    display: block;
+  #pariwisata-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 5px;
+    margin: 30px;
   }
 
-  .app-bar_menu {
-      display: block;
+  h1{
+    font-size: 24px;
   }
+
+  .search-input {
+
+    font-size: 12px;
+    max-height: 35px;
+}
   
+}
 
-  footer .links {
-      flex-direction: column;
-      gap: 10px;
+@media (max-width: 630px) {
+  #pariwisata-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 5px;
+    margin: 40px;
+    max-width: fit-content;
   }
 
+  .card img{
+    max-height: 250px;
+    max-width: fit-content;
+}
 }
 
 @media (max-width: 480px) {
   .app-bar .app-bar_menu button {
     font-size: 24px;
     padding: 8px;
+    right: 1rem;
 }
 
 .card-body a {

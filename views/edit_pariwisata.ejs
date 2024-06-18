@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Pariwisata</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -11,38 +12,48 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f8f9fa;
+            background-color: #E3FEF7;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         .form-container {
-            max-width: 600px;
-            width: 100%;
-            padding: 20px;
+            width: 80%;
+            margin: 30px;
+            padding: 10px;
             background-color: #fff;
-            border: 1px solid #dee2e6;
+            border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
-            position: relative;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #333;
+            font-size: 18px;
+            font-weight: 600;
         }
 
         .form-control, .form-control-file {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-control::placeholder, .form-control-file::placeholder {
+            color: #999;
+            font-size: 14px;
         }
 
         .form-control:focus, .form-control-file:focus {
@@ -50,23 +61,27 @@
             outline: none;
         }
 
-        .btn-primary, .btn-secondary {
+        .btn {
             display: inline-block;
-            padding: 10px 20px;
-            color: white;
+            padding: 12px 24px;
+            color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            width: fit-content;
+            transition: background-color 0.3s ease;
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #e9b311;
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #dfac15;
         }
 
         .btn-secondary {
@@ -80,42 +95,71 @@
 
         .button-group {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             margin-top: 20px;
         }
 
         @media (max-width: 768px) {
             .form-container {
+                padding: 20px;
+            }
+
+            .form-group label {
+                font-size: 14px;
+            }
+
+            h1{
+                font-size: 24px;
+            }
+
+            .form-control, .form-control-file {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
                 padding: 15px;
+            }
+
+            .form-group label {
+                font-size: 14px;
             }
 
             .form-control, .form-control-file {
                 padding: 8px;
             }
 
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                padding: 12px;
-                margin-bottom: 10px;
+            .btn {
+                padding: 8px 16px;
+                font-size: 12px;
             }
 
             .button-group {
-                flex-direction: column;
                 align-items: stretch;
             }
+
+            .btn-secondary {
+                margin-bottom: 10px;
+                height: 15px;
+            }
+            
+            .btn-primary {
+            height: 30px;
         }
 
-        @media (max-width: 480px) {
-            .form-container {
-                padding: 10px;
+            h1 {
+                font-size: 18px;
             }
 
-            .form-control, .form-control-file {
-                padding: 6px;
-            }
-
-            .btn-primary, .btn-secondary {
-                padding: 10px;
+            .form-control, .form-control-file{
+                font-size: 12px;
             }
         }
     </style>
@@ -129,22 +173,42 @@
                 <input type="text" id="judul" name="judul" class="form-control" value="<%= pariwisata.judul %>" required>
             </div>
             <div class="form-group">
-                <label for="deskripsi">Deskripsi</label>
-                <textarea id="deskripsi" name="deskripsi" class="form-control" required><%= pariwisata.deskripsi %></textarea>
+                <label for="kabupaten">Kabupaten</label>
+                <input type="text" id="kabupaten" name="kabupaten" class="form-control" value="<%= pariwisata.kabupaten %>" required>
             </div>
             <div class="form-group">
-                <label for="deskripsiGambar">Deskripsi Gambar</label>
-                <textarea id="deskripsiGambar" name="deskripsiGambar" class="form-control" required><%= pariwisata.deskripsi_gambar %></textarea>
+                <label for="deskripsi">Deskripsi</label>
+                <textarea id="deskripsi" name="deskripsi" class="form-control" rows="4" required><%= pariwisata.deskripsi %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="fasilitas">Fasilitas</label>
+                <textarea id="fasilitas" name="fasilitas" class="form-control" rows="4" required><%= pariwisata.fasilitas %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="hargaTiket">Harga Tiket</label>
+                <input type="text" id="hargaTiket" name="hargaTiket" class="form-control" value="<%= pariwisata.hargaTiket %>" required>
+            </div>
+            <div class="form-group">
+                <label for="lokasi">Lokasi</label>
+                <textarea id="lokasi" name="lokasi" class="form-control" rows="4" required><%= pariwisata.lokasi %></textarea>
             </div>
             <div class="form-group">
                 <label for="gambar">Gambar</label>
                 <input type="file" id="gambar" name="gambar" class="form-control-file">
                 <input type="hidden" name="existingGambar" value="<%= pariwisata.gambar %>">
-                <img src="/uploads/<%= pariwisata.gambar %>" alt="<%= pariwisata.judul %>" style="max-width: 100px; margin-top: 10px;">
+                <img src="/uploads/<%= pariwisata.gambar %>" alt="<%= pariwisata.judul %>" style="max-width: 100px; margin-top: 10px; display: block;">
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitude</label>
+                <input type="text" id="latitude" name="latitude" class="form-control" value="<%= pariwisata.latitude %>" placeholder="Latitude" required>
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude</label>
+                <input type="text" id="longitude" name="longitude" class="form-control" value="<%= pariwisata.longitude %>" placeholder="Longitude" required>
             </div>
             <div class="button-group">
-                <button type="submit" class="btn-primary">Update</button>
-                <a href="/admin/dashboard" class="btn-secondary">Cancel</a>
+                <a href="/admin/dashboard" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>

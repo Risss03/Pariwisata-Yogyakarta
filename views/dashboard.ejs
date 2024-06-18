@@ -10,7 +10,18 @@
             font-family: 'Poppins', sans-serif;
             background-color: #E3FEF7;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
+
+        .logo {
+            width: 150px; 
+            display: block;
+            margin: 0;
+            padding: 0;
+            border-radius: 4px; 
+        }
+
         .header {
             display: flex;
             justify-content: space-between;
@@ -18,9 +29,15 @@
             background-color: #003C43;
             color: white;
             padding: 10px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
         .header h1 {
             margin: 0;
+            font-size: 24px;
         }
         .header form {
             margin: 0;
@@ -36,41 +53,83 @@
         .header button:hover {
             background-color: #c82333;
         }
-        .add-pariwisata .btn-primary{
-            padding: 10px 20px;
-            background-color: #939ed1;
-            text-decoration: none;
-            color: white;
-            width: 5px;
-            height: auto;
-            border-radius: 4px;
-        }
         .container {
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 1200px;
+            margin: 80px auto 20px;
             padding: 20px;
             background-color: #E3FEF8;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .container-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .add-pariwisata {
+            margin: 0;
+        }
+        .add-pariwisata .btn-primary {
+            padding: 10px 20px;
+            background-color: #28a745;
+            text-decoration: none;
+            color: white;
+            border-radius: 4px;
+            display: inline-block;
+            width: fit-content;
+            margin-left: 20px;
+        }
+        .add-pariwisata .btn-primary:hover {
+            background-color: #218838;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .search-input {
+            padding: 10px;
+            border: 2px solid #003C43;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 250px;
+            margin-right: 20px;
+        }
+
+        #pariwisata-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 5px;
+            margin: 30px;
         }
         .card {
             background-color: #77B0AA;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 15px;
-            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
+        .card h2 {
+            color: #003C43;
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
         .card p {
             text-align: justify;
+            margin: 0 0 10px;
+            font-size: 14px;
         }
         .card img {
-            max-width: 50%;
+            max-width: 100%;
+            object-fit: cover;
             border-radius: 8px;
             margin-bottom: 10px;
         }
@@ -78,24 +137,34 @@
             display: flex;
             justify-content: center;
             gap: 10px;
+            width: 100%;
         }
         .card-actions form, .card-actions a {
             margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 40px;
+            text-align: center;
         }
         .card-actions button, .card-actions a {
-            background-color: #007bff;
+            background-color: #28a745 ;
             color: white;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
             text-decoration: none;
-        }
-        .card h2{
-            color: #003C43;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            height: fit-content;
         }
         .card-actions button:hover, .card-actions a:hover {
-            background-color: #0056b3;
+            background-color: #269c42;
         }
         .card-actions .btn-delete {
             background-color: #dc3545;
@@ -103,14 +172,121 @@
         .card-actions .btn-delete:hover {
             background-color: #c82333;
         }
-        .add-pariwisata {
-        margin-bottom: 20px;
+        .card-actions .btn-warning {
+            background-color: #e9b311; 
         }
-
+        .card-actions .btn-warning:hover {
+            background-color: #dfac15; 
+        }
         .gambar-pariwisata {
             width: 100%;
-            max-width: 300px; /* Sesuaikan lebar maksimum gambar */
+            max-width: 300px;
         }
+
+        @media (max-width: 990px) {
+            #pariwisata-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 5px;
+                margin: 30px;
+            }
+
+            .container{
+                padding: 20px;
+            }
+          }
+
+        @media (max-width: 795px) {
+            .search-input{
+                max-width: max-content;
+                font-size: 12px;
+            }
+
+            .card-actions button, .card-actions a {
+            font-size: 12px;
+            }
+
+            .add-pariwisata .btn-primary {
+                width: max-content;
+                font-size: 12px;
+        }
+        .header h1, .card h2 {
+            font-size: 18px;
+        }
+        }
+
+          @media (max-width: 746px) {
+
+            .card-actions button, .card-actions a {
+                font-size: 10px;
+            }
+            .card p {
+                font-size: 12px;
+            }
+        }
+
+
+        @media (max-width: 630px) {
+        #pariwisata-list {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); 
+            gap: 5px;
+            max-width: fit-content;
+        }
+
+            .search-input{
+                max-width: 100px;
+                font-size: 10px;
+
+            }
+
+            .card-actions button, .card-actions a {
+            font-size: 12px;
+            max-width: 90px;
+            }
+
+            .add-pariwisata .btn-primary {
+                width: fit-content;
+                font-size: 10px;
+        }
+        .card p {
+
+            font-size: 10px;
+        }
+
+        .card img{
+            max-height: 250px;
+            max-width: fit-content;
+        }
+
+        
+        .card-actions button, .card-actions a {
+            font-size: 10px;
+            }
+
+        .logo {
+            width: 100px; 
+            padding: 20px;
+        }
+
+        .header h1, .card h2 {
+            font-size: 14px;
+        }
+
+        .header button {
+            font-size: 10px;
+        }
+        }
+
+        @media (max-width: 481px) {
+            .add-pariwisata .btn-primary, .search-input{
+                font-size: 8px;
+                padding: 5px;
+            }
+
+        }
+
+
     </style>
 </head>
 <body>
@@ -121,24 +297,25 @@
         </form>
     </div>
     <div class="container">
-        <div class="add-pariwisata">
-            <a href="/admin/pariwisata/new" class="btn-primary">Tambah Pariwisata</a>
+        <div class="container-header">
+            <div class="add-pariwisata">
+                <a href="/admin/pariwisata/new" class="btn-primary">Tambah Pariwisata</a>
+            </div>
+            <img src="/images/logo-jogja.png" alt="logo" class="logo">
+            <div class="search-container">
+                <form id="searchForm" >
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari judul pariwisata...">
+                </form>
+            </div>
         </div>
-        <div class="pariwisata-list">
-            <% pariwisata.forEach(function(item) { %>
-                <div class="card">
-                    <h2><%= item.judul %></h2>
-                    <p><%= item.deskripsi %></p>
-                    <img src="/uploads/<%= item.gambar %>" alt="<%= item.judul %>" class="gambar-pariwisata">
-                    <p><%= item.deskripsi_gambar %></p>
-                    <div class="card-actions">
-                        <a href="/admin/pariwisata/<%= item.id %>/edit" class="btn-primary">Edit</a>
-                        <form action="/admin/pariwisata/<%= item.id %>/delete" method="post">
-                            <button type="submit" class="btn-delete">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            <% }); %>
-        </div>
+        <div id="pariwisata-list">
+            
     </div>
+    </div>
+    
+
+        <script src="/js/script_admin.js"></script>
+
+
 </body>
+</html>

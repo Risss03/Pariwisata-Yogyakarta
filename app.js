@@ -3,6 +3,7 @@ const session = require('express-session');
 const app = express();
 const pariwisataRoutes = require('./routes/pariwisata');
 const adminRoutes = require('./routes/admin');
+const pool = require('./models/db');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
     res.redirect('/admin/login');
 });
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

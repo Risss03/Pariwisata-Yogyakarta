@@ -4,8 +4,18 @@ const pool = require('../models/db');
 
 // Get all pariwisata
 router.get('/', async (req, res) => {
-    const [rows] = await pool.query('SELECT * FROM pariwisata');
-    res.json(rows);
+  const searchTerm = req.query.search;
+  let query = 'SELECT * FROM pariwisata';
+  let params = [];
+    
+  if (searchTerm) {
+    query += ' WHERE judul LIKE ?';
+    params = [`%${searchTerm}%`];
+  }
+
+  const [rows] = await pool.query(query, params);
+  
+  res.json(rows);
 });
 
 // Get detail pariwisata

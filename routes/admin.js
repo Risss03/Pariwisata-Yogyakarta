@@ -5,23 +5,20 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 
-// Konfigurasi Multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Simpan gambar di folder uploads
+        cb(null, 'uploads/'); 
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname); // Nama file unik dengan timestamp
+        cb(null, Date.now() + '-' + file.originalname); 
     }
 });
 const upload = multer({ storage: storage });
 
-// Admin login form
 router.get('/login', (req, res) => {
     res.render('login');
 });
 
-// Admin login process
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
     if (username === 'admin' && password === 'password') {
@@ -32,13 +29,22 @@ router.post('/login', (req, res) => {
     }
 });
 
-// Admin dashboard
 router.get('/dashboard', async (req, res) => {
     if (!req.session.admin) {
         return res.redirect('/admin/login');
     }
+    
     try {
-        const [pariwisataRows] = await pool.query('SELECT * FROM pariwisata');
+        const searchTerm = req.query.search;
+        let query = 'SELECT * FROM pariwisata';
+        let params = [];
+        
+        if (searchTerm) {
+        query += ' WHERE judul LIKE ?';
+        params = [`%${searchTerm}%`];
+        }
+        const [pariwisataRows] = await pool.query(query, params);
+
         res.render('dashboard', { pariwisata: pariwisataRows });
     } catch (err) {
         console.error(err);
@@ -59,11 +65,11 @@ router.post('/pariwisata', upload.single('gambar'), async (req, res) => {
     if (!req.session.admin) {
         return res.redirect('/admin/login');
     }
-    const { judul, deskripsi, deskripsiGambar } = req.body;
-    const gambar = req.file.filename;
+    const { judul, deskripsi, kabupaten, fasilitas, hargaTiket, lokasi, latitude, longitude } = req.body;
+    const gambar = req.file ? req.file.filename : '';
 
     try {
-        await pool.query('INSERT INTO pariwisata (judul, deskripsi, deskripsi_gambar, gambar) VALUES (?, ?, ?, ?)', [judul, deskripsi, deskripsiGambar, gambar]);
+        await pool.query('INSERT INTO pariwisata (judul, deskripsi, kabupaten, fasilitas, hargaTiket, lokasi, gambar, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [judul, deskripsi, kabupaten, fasilitas, hargaTiket, lokasi, gambar, latitude, longitude]);
         res.redirect('/admin/dashboard');
     } catch (err) {
         console.error(err);
@@ -93,14 +99,14 @@ router.post('/pariwisata/:id/update', upload.single('gambar'), async (req, res) 
     if (!req.session.admin) {
         return res.redirect('/admin/login');
     }
-    const { judul, deskripsi, deskripsiGambar } = req.body;
+    const { judul, deskripsi, kabupaten, fasilitas, hargaTiket, lokasi, latitude, longitude } = req.body;
     let gambar = req.body.existingGambar;
     if (req.file) {
         gambar = req.file.filename;
     }
 
     try {
-        await pool.query('UPDATE pariwisata SET judul = ?, deskripsi = ?, deskripsi_gambar = ?, gambar = ? WHERE id = ?', [judul, deskripsi, deskripsiGambar, gambar, req.params.id]);
+        await pool.query('UPDATE pariwisata SET judul = ?, deskripsi = ?,kabupaten = ?, fasilitas = ?, hargaTiket = ?, lokasi = ?, gambar = ?, latitude = ?, longitude = ? WHERE id = ?', [judul, deskripsi, kabupaten, fasilitas, hargaTiket, lokasi, gambar, latitude, longitude, req.params.id]);
         res.redirect('/admin/dashboard');
     } catch (err) {
         console.error(err);
@@ -151,5 +157,7 @@ router.post('/logout', (req, res) => {
         res.redirect('/admin/login');
     });
 });
+
+
 
 module.exports = router;
