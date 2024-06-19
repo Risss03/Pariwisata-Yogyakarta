@@ -38,10 +38,14 @@ function debounce(func, wait) {
         editLink.classList.add('btn-warning');
         
 
-        const deleteLink = document.createElement('a');
-        deleteLink.href = `/admin/pariwisata/${pariwisata.id}/delete`;
-        deleteLink.textContent = 'Delete';
-        deleteLink.classList.add('btn-delete');
+        const deleteForm = document.createElement('form');
+        deleteForm.action = `/admin/pariwisata/${pariwisata.id}/delete`;
+        deleteForm.method = 'post';
+
+        const deleteButton = document.createElement('button');
+        deleteButton.type = 'submit'
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('btn-delete');
         
         const readMoreLink = document.createElement('a');
         readMoreLink.href = `/pariwisata/${pariwisata.id}`;
@@ -53,7 +57,8 @@ function debounce(func, wait) {
         card.appendChild(image);
         card.appendChild(description);
 
-        cardActions.appendChild(deleteLink);
+        cardActions.appendChild(deleteForm);
+        deleteForm.appendChild(deleteButton);
         cardActions.appendChild(editLink);
         cardActions.appendChild(readMoreLink);
 
